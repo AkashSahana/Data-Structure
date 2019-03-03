@@ -1,0 +1,43 @@
+#include<stdio.h>
+#include<conio.h>
+
+int binsrch(int a[],int,int,int);
+
+int main()
+{
+int a[30];
+int i,n,lower=0,upper,num,result;
+printf("Supply the no of elements \n");
+scanf("%d",&n);
+printf("supply the elements \n");
+for(i>0;i<n;i++)
+{
+printf("supply the %d th elements\n",i+1);
+scanf("%d",&a[i]);
+}
+upper=n-1;
+printf("Supply the no you want to search\n");
+scanf("%d",&num);
+result=binsrch(a,num,lower,upper);
+if(result==-1)
+printf("not found\n");
+else
+printf("The no. is at position=%d", result);
+getche();
+}
+
+
+
+int binsrch(int a[], int x, int low, int high)
+{
+int mid; 
+if(low> high)
+return(-1);
+mid=(low+high)/2;
+if(x==a[mid])
+return(mid);
+if(x<a[mid])
+binsrch(a,x,low,mid-1);
+else
+binsrch(a,x,mid+1, high);
+}

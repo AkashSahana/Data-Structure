@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<conio.h>
+void merge(int a[], int lower1, int upper1, int lower2, int upper2)
+{
+
+    int p,q,n,j,d[30],i;
+    p=lower1;
+    q=lower2;
+    n=0;
+    while((p<=upper1)&&(q<=upper2))
+    {
+        d[n++]=(a[p]<a[q])?a[p++]:a[q++];
+    }
+    while(p<=upper1)
+        d[n++]=a[p++];
+    while(q<=upper2)
+        d[n++]=a[q++];
+    for(i=lower1,n=0;i<=upper1;i++,n++)
+        a[i]=d[n];
+    for(i=lower2,j=n;i<=upper2;i++,j++)
+        a[i]=d[j];
+}
+int mergesort(int a[], int lower, int upper)
+{
+    int mid;
+    if(upper>lower)
+    {
+        mid=(lower+upper)/2;
+        mergesort(a,lower,mid);
+        mergesort(a,mid+1,upper);
+        merge(a, lower, mid, mid+1, upper);
+    }
+}
+int main()
+{
+    int a[30],lower=0, upper, n, i;
+    printf("Enter The No. Of Elements You Want To Sort:\n");
+    scanf("%d", &n);
+    printf("Supply The Elements:\n");
+    for(i=0;i<n;i++)
+    {
+        printf("Enter The %d no. Element:\t", i+1);
+        scanf("%d", &a[i]);
+    }
+    upper=n-1;
+    mergesort(a, lower, upper);
+    printf("\n After Sorting\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%d\t", a[i]);
+    }
+    getche();
+}

@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+int n,i,a[30],i1,temp,j;
+printf("Supply The Number Of Element For Insertion\n");
+scanf("%d",&n);
+printf("Supply The Elements:-\n");
+for(i=0;i<n;i++)
+{
+    scanf("%d", &a[i]);
+}
+printf("Before Sorting The Elements Are\n");
+for(i=0;i<n;i++)
+{
+    printf("%d\t", a[i]);
+}
+for(i1=1;i1<n;i1++)
+{
+    temp=a[i1];
+    j=i1-1;
+    while(a[j]>temp && j>=0)
+    {
+        a[j+1]=a[j];
+        j--;
+    }
+    a[j+1]=temp;
+}
+printf("\n After Sorting The Elements Are:-\n");
+for(i=0;i<n;i++)
+    printf("%d\t",a[i]);
+}
